@@ -102,7 +102,7 @@ public class ClientTickMessageHandler implements HttpHandler {
 				long hashrate = Long.parseLong(params.get("hashrate"));
 				pst = App.dbcon.prepareStatement("UPDATE clients SET hashrate = ? WHERE UID = ?");
 				pst.setLong(1, hashrate);
-				pst.setInt(1, Integer.parseInt(params.get("UID")));
+				pst.setInt(2, Integer.parseInt(params.get("UID")));
 				pst.executeUpdate();
 			}
 			
