@@ -32,7 +32,7 @@ public class ClientTickMessageHandler implements HttpHandler {
 			validData = false;
 		} else {
 			// Parse variables and make sure we have everything needed
-			if (params.keySet().size() != 3) 
+			if (params.keySet().size() != 3 && params.keySet().size() != 4) 
 				validData = false;
 			else {
 				if (params.get("UID") == null || params.get("UID").equals("") ||
@@ -95,6 +95,15 @@ public class ClientTickMessageHandler implements HttpHandler {
 				stm = new ServerTickMessage(clientUID, -1, ChunkQueue.getNewChunk(clientUID, Integer.parseInt(params.get("jobID"))));
 			} else { // Client is busy, nothing to do
 				stm = new ServerTickMessage(clientUID, -1, -1);
+			}
+			
+			// If client provided a hashrate, update their row to reflect it
+			if (params.get("hashrate") != null && !params.get("hashrate").equals("")) {
+				long hashrate = Long.parseLong(params.get("hashrate"));
+				pst = App.dbcon.prepareStatement("UPDATE clients SET hashrate = ? WHERE UID = ?");
+				pst.setLong(1, hashrate);
+				pst.setInt(1, Integer.parseInt(params.get("UID")));
+				pst.executeUpdate();
 			}
 			
 			String response = stm.serialize();

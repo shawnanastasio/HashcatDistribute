@@ -44,7 +44,8 @@ DROP TABLE IF EXISTS `clients`;
 CREATE TABLE `clients` (
   `UID` int(11) NOT NULL,
   `jobID` int(11) DEFAULT NULL,
-  `chunkID` int(11) DEFAULT NULL
+  `chunkID` int(11) DEFAULT NULL,
+  `hashrate` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -102,4 +103,4 @@ CREATE TABLE `results` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-15 19:12:30
+-- Dump completed on 2016-06-16 19:41:09

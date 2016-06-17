@@ -13,8 +13,8 @@ import com.google.gson.GsonBuilder;
 
 public class ServerConfig {
 	public int port; // Port the server should listen on
-	public int chunkTime = 300; // Time in seconds it should take to complete a chunk
-	public int chunkTimeout = 600; // Time in seconds it should take for a chunk to time out and be reassigned
+	public int chunkTime; // Time in seconds it should take to complete a chunk
+	public int chunkTimeout; // Time in seconds it should take for a chunk to time out and be reassigned
 	
 	public String databaseIP;
 	public int databasePort;
